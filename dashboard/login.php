@@ -48,7 +48,7 @@ $error="Your Login Name or Password is invalid";
             <form action="login.php" method="post">
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="text" name="username" class="form-control" placeholder="Username"/>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username"/>
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Password"/>

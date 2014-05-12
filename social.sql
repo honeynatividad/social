@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2014 at 04:50 PM
+-- Generation Time: May 12, 2014 at 05:20 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -43,6 +43,27 @@ INSERT INTO `admin` (`id`, `username`, `passcode`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `cat_id` int(3) NOT NULL AUTO_INCREMENT,
+  `cat_name` varchar(215) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cat_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`cat_id`, `cat_name`, `created`) VALUES
+(1, 'Pages', '2014-05-12 11:37:29'),
+(2, 'Post', '2014-05-12 11:44:32');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `content`
 --
 
@@ -50,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `content` (
   `content_id` int(3) NOT NULL AUTO_INCREMENT,
   `title` varchar(215) NOT NULL,
   `description` varchar(215) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`content_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -99,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `photos` varchar(215) NOT NULL,
   `status` varchar(215) NOT NULL,
   `captcha` varchar(215) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`users_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

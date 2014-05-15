@@ -35,6 +35,9 @@ $count=mysql_num_rows($result);
 // If result matched $username and $password, table row must be 1 row
 if($count==1)
 {
+    while($row = mysql_fetch_array($result)){
+        $_SESSION['username'] = $username;
+    }
 header("location: lockscreen.php");
 }
 else 

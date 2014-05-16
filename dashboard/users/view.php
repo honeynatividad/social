@@ -218,6 +218,7 @@ if(!isset($_SESSION['username'])){
                                                 <th>First Name</th>
                                                 <th>Last Name</th>
                                                 <th>Email Add</th>
+                                                <th>Type</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -228,7 +229,19 @@ if(!isset($_SESSION['username'])){
                                                 <td><?php echo $a['first_name'] ?></td>
                                                 <td><?php echo $a['last_name'] ?></td>
                                                 <td> <?php echo $a['email_address'] ?></td>
-                                                <td>X</td>
+                                                <td> <?php echo $a['type'] ?></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <a href='user_view.php?id=<?php echo $a['users_id'] ?>' class='btn btn-info'>View</a>
+                                                        <a href='edit.php?id=<?php echo $a['users_id'] ?>' class='btn btn-info'>Edit</a>
+                                                        <?php if($a['status']==1){?>
+                                                        <a href='deactivate.php?id=<?php echo $a['users_id'] ?>' class='btn btn-info'>Deactivate</a>
+                                                        <?php }else{ ?>
+                                                        <a href='activate.php?id=<?php echo $a['users_id'] ?>' class='btn btn-info'>Activate</a>
+                                                        
+                                                        <?php } ?>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <?php endforeach; ?>
                                             

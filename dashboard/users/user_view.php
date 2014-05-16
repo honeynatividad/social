@@ -6,10 +6,6 @@ $id=$_GET['id'];
 if(!isset($id)){
     header("Location:view.php");
 }
-if(!isset($_SESSION['username'])){
-    header("Location:../login.php");
-}
-$users->userView($id);
 ?>
 <!DOCTYPE html>
 <html>
@@ -174,86 +170,26 @@ $users->userView($id);
                 <section class="content">
                     <div class="col-md-10">                       
                     
-                        <form role="form" action="edit.php" method="post">
-                            <input type="hidden" name="users_id" value="<?php echo $id; ?>">
-                                <div class="box-body">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Username</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter username" name="username" value="<?php echo $users->username ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value="<?php echo $users->password ?>">
-                                    </div>                                    
-                                    <div class="form-group">
-                                        <label for="firstName">First Name</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="first name" name="first_name" value="<?php echo $users->first_name ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="last name" name="last_name" value="<?php echo $users->last_name ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName">Email Address</label>
-                                        <input type="email" class="form-control" id="emailAddress" placeholder="user@user.com" name="email_address" value="<?php echo $users->email_address ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="birthDate">Birth Date</label>
-                                        <input type="date" class="form-control" id="birthDate" name="birth_date" value="<?php echo $users->birth_date ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="birthPlace">Birth Place</label>
-                                        <input type="text" class="form-control" id="birthPlace" placeholder="birth place" name="birth_place" value="<?php echo $users->birth_place ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone">Phone</label>
-                                        <input type="tel" class="form-control" id="phone" placeholder="phone" name="phone" value="<?php echo $users->phone ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="lastName">Mobile Phone</label>
-                                        <input type="tel" class="form-control" id="lastName" placeholder="###-###-###" name="mobile_phone" value="<?php echo $users->mobile_phone ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="skype">Skype</label>
-                                        <input type="text" class="form-control" id="skype" placeholder="skype user" name="skype" value="<?php echo $users->skype ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="fax">Fax No</label>
-                                        <input type="number" class="form-control" id="fax" placeholder="#######" name="fax" value="<?php echo $users->fax ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Marital Status</label>
-                                        <select class="form-control" name="marital_status">
-                                            <option value="<?php echo $users->marital_status ?>"><?php echo $users->marital_status ?></option>
-                                            <option value="single">Single</option>
-                                            <option value="married">Married</option>
-                                            <option value="divorced">Divorced</option>
-                                            <option value="widowed">Widowed</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="city">City</label>
-                                        <input type="text" class="form-control" id="city" placeholder="city" name="city" value="<?php echo $users->city ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="country">Country</label>
-                                        <input type="text" class="form-control" id="country" placeholder="country" name="country" value="<?php echo $users->country ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="profession">Profession</label>
-                                        <input type="text" class="form-control" id="profession" placeholder="profession" name="profession" value="<?php echo $users->profession ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Self Description</label>
-                                        <textarea class="form-control" rows="3" placeholder="Enter Self Description Here" name="self_description"><?php echo $users->self_description ?></textarea>
-                                    </div>
-                                    
-                                </div><!-- /.box-body -->
-                                
-                                <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
+                        <?php foreach($users->userData($id) as $a): ?>
+                        <div class="box-body">                            
+                            <p class="text-green">First Name: <?php echo $a['first_name'] ?></p>
+                            <p class="text-green">Last Name: <?php echo $a['last_name'] ?></p>
+                            <p class="text-green">Email Add: <?php echo $a['email_address'] ?></p>
+                            <p class="text-green">Marital Status: <?php echo $a['marital_status'] ?></p>
+                            <p class="text-green">Birth Date: <?php echo $a['birth_date'] ?></p>
+                            <p class="text-green">Birth Place: <?php echo $a['birth_place'] ?></p>
+                            <p class="text-green">Phone: <?php echo $a['phone'] ?></p>
+                            <p class="text-green">Mobile Phone: <?php echo $a['mobile_phone'] ?></p>
+                            <p class="text-green">Fax: <?php echo $a['fax'] ?></p>
+                            <p class="text-green">Skype: <?php echo $a['skype'] ?></p>
+                            <p class="text-green">City: <?php echo $a['city'] ?></p>
+                            <p class="text-green">Country: <?php echo $a['country'] ?></p>
+                            <p class="text-green">Profession: <?php echo $a['profession'] ?></p>
+                            <p class="text-green">Self Description: <?php echo $a['self_description'] ?></p>
+                            <p class="text-green">Type: <?php echo $a['type'];?></p>
+                            
+                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->

@@ -35,6 +35,9 @@ $count=mysql_num_rows($result);
 // If result matched $username and $password, table row must be 1 row
 if($count==1)
 {
+    while($row = mysql_fetch_array($result)){
+        $_SESSION['username'] = $username;
+    }
 header("location: lockscreen.php");
 }
 else 
@@ -42,8 +45,7 @@ else
 $error="Your Login Name or Password is invalid";
 }
 }
-?>
-        <div class="form-box" id="login-box">
+?>        <div class="form-box" id="login-box">
             <div class="header">Sign In</div>
             <form action="login.php" method="post">
                 <div class="body bg-gray">
